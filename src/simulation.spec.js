@@ -22,12 +22,12 @@ describe('Simulation', () => {
 
         it('returns and logs when no command found', function(){
 
-            let toyRobotGame = new Simulation(mockLogger, mockTable, mockCommandProvider);
+            let simulation = new Simulation(mockLogger, mockTable, mockCommandProvider);
 
             spyOn(mockLogger, 'log');
             spyOn(mockCommandProvider, 'for').and.returnValue(undefined);
 
-            toyRobotGame.move('a command');
+            simulation.move('a command');
 
             expect(mockLogger.log).toHaveBeenCalled();
         })

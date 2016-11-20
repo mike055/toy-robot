@@ -1,10 +1,10 @@
 const readline = require('readline');
-import {ToyRobotGame} from './toyRobotGame';
+import {Simulation} from './simulation';
 
 export class CommandLineHelper{
-    constructor(logger, toyRobotGame){
+    constructor(logger, simulation){
         this.logger = logger;
-        this.toyRobotGame = toyRobotGame;
+        this.simulation = simulation;
         this.rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout
@@ -20,7 +20,7 @@ export class CommandLineHelper{
                 this.rl.close();
             }
             else {
-                this.toyRobotGame.move(input);
+                this.simulation.move(input);
                 this._promptForInput();
             }
         });

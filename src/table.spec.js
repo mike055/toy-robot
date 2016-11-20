@@ -3,7 +3,7 @@ import '../tests/pollyfills.js'
 
 describe('Table', () => {
 
-    describe('when calling isRobotInValidPositionForTable', () => {
+    describe('when calling isRobotOnTable', () => {
 
         var mockLogger = {
             log: function(message){}
@@ -11,7 +11,7 @@ describe('Table', () => {
 
         it('returns false when robot has no X position', () => {
             let table = new Table(mockLogger);
-            expect(table.isRobotInValidPositionForTable({
+            expect(table.isRobotOnTable({
                 Y: 0,
                 F: 'N'
             })).toBe(false);
@@ -19,7 +19,7 @@ describe('Table', () => {
 
         it('returns false when robot has no Y position', () => {
             let table = new Table(mockLogger);
-            expect(table.isRobotInValidPositionForTable({
+            expect(table.isRobotOnTable({
                 X: 0,
                 F: 'N'
             })).toBe(false);
@@ -27,7 +27,7 @@ describe('Table', () => {
 
         it('returns false when robot has negative X position', () => {
             let table = new Table(mockLogger);
-            expect(table.isRobotInValidPositionForTable({
+            expect(table.isRobotOnTable({
                 X: -1,
                 Y: 0,
                 F: 'N'
@@ -36,7 +36,7 @@ describe('Table', () => {
 
         it('returns false when robot has negative Y position', () => {
             let table = new Table(mockLogger);
-            expect(table.isRobotInValidPositionForTable({
+            expect(table.isRobotOnTable({
                 X: 0,
                 Y: -1,
                 F: 'N'
@@ -45,7 +45,7 @@ describe('Table', () => {
 
         it('returns false when robot has X position greater than 4', () => {
             let table = new Table(mockLogger);
-            expect(table.isRobotInValidPositionForTable({
+            expect(table.isRobotOnTable({
                 X: 5,
                 Y: 0,
                 F: 'N'
@@ -54,7 +54,7 @@ describe('Table', () => {
 
         it('returns false when robot has Y position greater than 4', () => {
             let table = new Table(mockLogger);
-            expect(table.isRobotInValidPositionForTable({
+            expect(table.isRobotOnTable({
                 X: 0,
                 Y: 5,
                 F: 'N'
@@ -72,7 +72,7 @@ describe('Table', () => {
                         F: 'N'
                     };
 
-                    var result =table.isRobotInValidPositionForTable(tr);
+                    var result =table.isRobotOnTable(tr);
                     expect(result).toBe(true);
                  }
              }

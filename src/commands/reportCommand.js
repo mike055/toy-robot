@@ -3,7 +3,8 @@ export class ReportCommand{
         this.logger = logger;
     }
 
-    execute() {
-        this.logger.log(`report command`);
+    execute(robot) {
+        this.logger.log(`${robot.X},${robot.Y},${robot.F}`);
+        return robot;
     }
 }

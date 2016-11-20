@@ -24,7 +24,7 @@ export class Simulation{
             return;
         }
 
-        command.execute();
+        this.currentRobotState = command.execute(this.currentRobotState);
 
         //parse the command
             //class to do this?

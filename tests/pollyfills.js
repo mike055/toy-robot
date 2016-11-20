@@ -7,6 +7,10 @@ if (!Number.isInteger) {
     };
 }
 
+if(!Number.parseInt) {
+    Number.parseInt = parseInt;
+}
+
 if (!String.prototype.startsWith) {
     String.prototype.startsWith = function(searchString, position){
       position = position || 0;
