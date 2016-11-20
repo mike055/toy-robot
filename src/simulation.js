@@ -1,10 +1,10 @@
-import {Board} from './board';
+import {Table} from './table';
 import {CommandProvider} from './commandProvider';
 
-export class ToyRobotGame{
-    constructor(logger, board, commandProvider){
+export class Simulation{
+    constructor(logger, table, commandProvider){
         this.logger = logger;
-        this.board = board;
+        this.table = table;
         this.commandProvider = commandProvider;
 
         this.currentRobotState = {

@@ -1,16 +1,16 @@
-import {ToyRobotGame} from './toyRobotGame';
-import {Board} from './board';
+import {Simulation} from './simulation';
+import {Table} from './table';
 import {CommandProvider} from './commandProvider';
 
 import '../tests/pollyfills.js'
 
-describe('ToyRobotGame', () => {
+describe('Simulation', () => {
 
     var mockLogger = {
         log: function(message){}
     }
 
-    var mockBoard = {
+    var mockTable = {
 
     }
 
@@ -18,11 +18,11 @@ describe('ToyRobotGame', () => {
         for: function(rawCommand) { }
     }
 
-    describe('move', () => {
+    describe('when move is called', () => {
 
         it('returns and logs when no command found', function(){
 
-            let toyRobotGame = new ToyRobotGame(mockLogger, mockBoard, mockCommandProvider);
+            let toyRobotGame = new Simulation(mockLogger, mockTable, mockCommandProvider);
 
             spyOn(mockLogger, 'log');
             spyOn(mockCommandProvider, 'for').and.returnValue(undefined);
