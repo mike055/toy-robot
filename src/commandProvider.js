@@ -22,13 +22,13 @@ export class CommandProvider {
         rawCommand = rawCommand.trim();
 
         if(rawCommand === 'LEFT') {
-            return new LeftCommand(this.logger);
+            return new LeftCommand(this.logger, this.direction);
         }
         if(rawCommand === 'RIGHT') {
-            return new RightCommand(this.logger);
+            return new RightCommand(this.logger, this.direction);
         }
         if(rawCommand === 'MOVE') {
-            return new MoveCommand(this.logger);
+            return new MoveCommand(this.logger, this.table);
         }
         if(rawCommand === 'REPORT') {
             return new ReportCommand(this.logger);
