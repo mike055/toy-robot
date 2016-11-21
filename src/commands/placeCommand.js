@@ -1,13 +1,12 @@
 export class PlaceCommand{
-    constructor(logger, table, commandArgs){
+    constructor(logger, table, direction, commandArgs){
         this.logger = logger;
         this.table = table;
+        this.direction = direction;
         this.commandArgs = commandArgs;
     }
 
     execute() {
-        this.logger.log(`place command`);
-
         if(this._areCommandArgsValid()) {
             return null;
         }
@@ -30,12 +29,11 @@ export class PlaceCommand{
     }
 
     _areCommandArgsValid() {
-        const validDirections = ['NORTH','SOUTH','EAST','WEST'];
 
         if(this.commandArgs.length === 3) {
             if(Number.isInteger(this.commandArgs[0])
                 && Number.isInteger(this.commandArgs[1])
-                && validDirections.indexOf(this.commandArgs[2]) > -1)
+                && this.direction.validDirections.indexOf(this.commandArgs[2]) > -1)
             {
                 return true;
             }

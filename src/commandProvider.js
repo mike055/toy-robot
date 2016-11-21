@@ -4,11 +4,13 @@ import {PlaceCommand} from './commands/placeCommand';
 import {ReportCommand} from './commands/reportCommand';
 import {RightCommand} from './commands/rightCommand';
 import {Table} from './table';
+import {Direction} from './direction';
 
 export class CommandProvider {
-    constructor(logger, table){
+    constructor(logger, table, direction){
         this.logger = logger;
         this.table = table;
+        this.direction = direction;
     }
 
     for(rawCommand) {
@@ -34,7 +36,7 @@ export class CommandProvider {
         if(rawCommand.startsWith('PLACE')) {
             var args = rawCommand.replace('PLACE', '').trim().split(',');
 
-            return new PlaceCommand(this.logger, this.table, args);
+            return new PlaceCommand(this.logger, this.table, this.direction, args);
         }
 
         return undefined;

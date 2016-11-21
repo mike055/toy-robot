@@ -14,44 +14,45 @@ describe('CommandProvider', () => {
     }
     var mockTable = {
     }
+    var mockDirection = {}
 
     it('creates left command when raw command is LEFT', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('LEFT');
 
         expect(result instanceof LeftCommand).toBe(true);
     });
 
     it('creates right command when raw command is RIGHT', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('RIGHT');
 
         expect(result instanceof RightCommand).toBe(true);
     });
 
     it('creates move command when raw command is MOVE', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('MOVE');
 
         expect(result instanceof MoveCommand).toBe(true);
     });
 
     it('creates report command when raw command starts with REPORT', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('REPORT');
 
         expect(result instanceof ReportCommand).toBe(true);
     });
     
     it('creates place command when raw command starts with PLACE', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('PLACE');
 
         expect(result instanceof PlaceCommand).toBe(true);
     });
 
     it('creates place command with args when raw command is PLACE 1,2,NORTH', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('PLACE 1,2,NORTH');
 
         expect(result instanceof PlaceCommand).toBe(true);
@@ -59,21 +60,21 @@ describe('CommandProvider', () => {
     });
 
     it('returns undefined when null command', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for(null);
 
         expect(result).toBe(undefined);
     });
 
     it('returns undefined when empty command', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('');
 
         expect(result).toBe(undefined);
     });
 
     it('returns undefined when invalid command', function(){
-        let commandParser = new CommandProvider(mockLogger, mockTable);
+        let commandParser = new CommandProvider(mockLogger, mockTable, mockDirection);
         let result = commandParser.for('asdasdsad');
 
         expect(result).toBe(undefined);
