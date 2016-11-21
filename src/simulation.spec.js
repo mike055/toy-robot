@@ -6,10 +6,6 @@ import '../tests/pollyfills.js'
 
 describe('Simulation', () => {
 
-    var mockLogger = {
-        log: function(message){}
-    }
-
     var mockTable = {
 
     }
@@ -24,16 +20,21 @@ describe('Simulation', () => {
 
     describe('when move is called', () => {
 
-        it('returns and logs when no command found', function(){
+        it('returns and robot state unchanged', function(){
+            const currentRobot = {
+                X: 0,
+                Y: 0,
+                F: 'NORTH'
+            };
 
-            let simulation = new Simulation(mockLogger, mockTable, mockCommandProvider);
-
-            spyOn(mockLogger, 'log');
             spyOn(mockCommandProvider, 'for').and.returnValue(undefined);
 
+            let simulation = new Simulation(mockTable, mockCommandProvider);
+            simulation.currentRobotState = currentRobot;
+            
             simulation.move('a command');
 
-            expect(mockLogger.log).toHaveBeenCalled();
+            expect(simulation.currentRobotState).toBe(currentRobot);
         })
 
         it('set new robot state when command executed', function(){
@@ -53,7 +54,7 @@ describe('Simulation', () => {
             spyOn(mockCommand, 'execute').and.returnValue(newRobotState);
             spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
 
-            let simulation = new Simulation(mockLogger, mockTable, mockCommandProvider);
+            let simulation = new Simulation(mockTable, mockCommandProvider);
             simulation.currentRobotState = currentRobot;
 
             simulation.move(rawCommand);

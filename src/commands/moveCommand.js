@@ -1,6 +1,5 @@
 export class MoveCommand{
-    constructor(logger, table){
-        this.logger = logger;
+    constructor(table){
         this.table = table;
     }
 

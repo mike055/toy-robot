@@ -22,13 +22,13 @@ export class CommandProvider {
         rawCommand = rawCommand.trim();
 
         if(rawCommand === 'LEFT') {
-            return new LeftCommand(this.logger, this.direction);
+            return new LeftCommand(this.direction);
         }
         if(rawCommand === 'RIGHT') {
-            return new RightCommand(this.logger, this.direction);
+            return new RightCommand(this.direction);
         }
         if(rawCommand === 'MOVE') {
-            return new MoveCommand(this.logger, this.table);
+            return new MoveCommand(this.table);
         }
         if(rawCommand === 'REPORT') {
             return new ReportCommand(this.logger);
@@ -36,7 +36,7 @@ export class CommandProvider {
         if(rawCommand.startsWith('PLACE')) {
             var args = rawCommand.replace('PLACE', '').trim().split(',');
 
-            return new PlaceCommand(this.logger, this.table, this.direction, args);
+            return new PlaceCommand(this.table, this.direction, args);
         }
 
         return undefined;

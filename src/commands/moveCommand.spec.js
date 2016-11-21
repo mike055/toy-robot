@@ -5,10 +5,6 @@ describe('MoveCommand', () => {
 
     describe('when executing command', () => {
 
-        var mockLogger = {
-            log: function(message){}
-        }
-
         var mockTable = {
             isRobotOnTable: function(robot){}
         }
@@ -22,7 +18,7 @@ describe('MoveCommand', () => {
             
             spyOn(mockTable, 'isRobotOnTable').and.returnValue(false);
 
-            let moveCommand = new MoveCommand(mockLogger, mockTable);
+            let moveCommand = new MoveCommand(mockTable);
             let result = moveCommand.execute(robot);
 
             expect(result).toBe(null);
@@ -38,7 +34,7 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockLogger, mockTable);
+                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);
@@ -58,7 +54,7 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockLogger, mockTable);
+                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);
@@ -78,7 +74,7 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockLogger, mockTable);
+                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);
@@ -98,7 +94,7 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockLogger, mockTable);
+                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);

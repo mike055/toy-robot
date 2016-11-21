@@ -1,6 +1,5 @@
 export class Table{
     constructor(logger){
-        this.logger = logger;
         this.tableTop = Array(...Array(5)).map(() => Array(5));
     }
 

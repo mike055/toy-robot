@@ -1,6 +1,5 @@
 export class PlaceCommand{
-    constructor(logger, table, direction, commandArgs){
-        this.logger = logger;
+    constructor(table, direction, commandArgs){
         this.table = table;
         this.direction = direction;
         this.commandArgs = commandArgs;

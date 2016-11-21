@@ -5,10 +5,6 @@ describe('LeftCommand', () => {
 
     describe('when executing command', () => {
 
-        var mockLogger = {
-            log: function(message){}
-        }
-
         var mockDirection = {
             getNextLeftDirection: function(currentDirection) { }
         };
@@ -17,16 +13,21 @@ describe('LeftCommand', () => {
             const currentDir = 'NORTH';
             const nextDir = 'WEST';
 
-            spyOn(mockDirection, 'getNextLeftDirection').and.returnValue(nextDir);
-            
-            let leftCommand = new LeftCommand(mockLogger, mockDirection);
-            let result = leftCommand.execute({
+            const currentRobot = {
                 X: 0,
                 Y: 0,
                 F: currentDir
-            });
+            };
 
-            expect(result).toBe(nextDir);
+            spyOn(mockDirection, 'getNextLeftDirection').and.returnValue(nextDir);
+            
+            let leftCommand = new LeftCommand(mockDirection);
+            let result = leftCommand.execute(currentRobot);
+
+            expect(result.F).toBe(nextDir);
+            expect(result.X).toBe(currentRobot.X);
+            expect(result.Y).toBe(currentRobot.Y);
+            
             expect(mockDirection.getNextLeftDirection).toHaveBeenCalledWith(currentDir);
         });
     });

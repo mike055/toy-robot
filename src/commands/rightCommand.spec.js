@@ -5,10 +5,6 @@ describe('RightCommand', () => {
 
     describe('when executing command', () => {
 
-        var mockLogger = {
-            log: function(message){}
-        }
-
         var mockDirection = {
             getNextRightDirection: function(currentDirection) { }
         };
@@ -17,16 +13,21 @@ describe('RightCommand', () => {
             const currentDir = 'NORTH';
             const nextDir = 'EAST';
 
-            spyOn(mockDirection, 'getNextRightDirection').and.returnValue(nextDir);
-            
-            let rightCommand = new RightCommand(mockLogger, mockDirection);
-            let result = rightCommand.execute({
+            const currentRobot = {
                 X: 0,
                 Y: 0,
                 F: currentDir
-            });
+            };
 
-            expect(result).toBe(nextDir);
+            spyOn(mockDirection, 'getNextRightDirection').and.returnValue(nextDir);
+            
+            let rightCommand = new RightCommand(mockDirection);
+            let result = rightCommand.execute(currentRobot);
+
+            expect(result.F).toBe(nextDir);
+            expect(result.X).toBe(currentRobot.X);
+            expect(result.Y).toBe(currentRobot.Y);
+            
             expect(mockDirection.getNextRightDirection).toHaveBeenCalledWith(currentDir);
         });
     });

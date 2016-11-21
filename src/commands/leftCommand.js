@@ -1,10 +1,15 @@
 export class LeftCommand{
-    constructor(logger, direction){
-        this.logger = logger;
+    constructor(direction){
         this.direction = direction;
     }
 
     execute(currentRobot) {
-        return this.direction.getNextLeftDirection(currentRobot.F);
+        var newDirection = this.direction.getNextLeftDirection(currentRobot.F);
+
+        return {
+            X: currentRobot.X,
+            Y: currentRobot.Y,
+            F: newDirection
+        }
     }
 }
