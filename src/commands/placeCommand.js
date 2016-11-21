@@ -7,7 +7,8 @@ export class PlaceCommand{
     }
 
     execute() {
-        if(this._areCommandArgsValid()) {
+        
+        if(!this._areCommandArgsValid()) {
             return null;
         }
 
@@ -31,9 +32,10 @@ export class PlaceCommand{
     _areCommandArgsValid() {
 
         if(this.commandArgs.length === 3) {
-            if(Number.isInteger(this.commandArgs[0])
-                && Number.isInteger(this.commandArgs[1])
-                && this.direction.validDirections.indexOf(this.commandArgs[2]) > -1)
+
+            if(Number.isInteger(Number.parseInt(this.commandArgs[0]))
+                && Number.isInteger(Number.parseInt(this.commandArgs[1]))
+                && this.direction.isValidDirection(this.commandArgs[2]))
             {
                 return true;
             }

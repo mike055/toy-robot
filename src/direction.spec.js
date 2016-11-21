@@ -7,6 +7,45 @@ describe('Direction', () => {
         log: function(message){}
     }
 
+    describe('when checking valid direction', () => {
+
+        it('returns true when NORTH', function(){
+            let direction = new Direction(mockLogger);
+            let result = direction.isValidDirection('NORTH')
+
+            expect(result).toBe(true);
+        });
+
+        it('returns true when EAST', function(){
+            let direction = new Direction(mockLogger);
+            let result = direction.isValidDirection('EAST')
+
+            expect(result).toBe(true);
+        });
+
+        it('returns true when SOUTH', function(){
+            let direction = new Direction(mockLogger);
+            let result = direction.isValidDirection('SOUTH')
+
+            expect(result).toBe(true);
+        });
+
+        it('returns true when WEST', function(){
+            let direction = new Direction(mockLogger);
+            let result = direction.isValidDirection('WEST')
+
+            expect(result).toBe(true);
+        });
+
+        it('returns false not a valid direction', function(){
+            let direction = new Direction(mockLogger);
+            let result = direction.isValidDirection('TEST')
+
+            expect(result).toBe(false);
+        });
+
+    });
+
     describe('when getting next left direction', () => {
 
         it('returns WEST when current direction is NORTH', function(){

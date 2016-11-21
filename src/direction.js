@@ -5,6 +5,10 @@ export class Direction {
         this.validDirections = ['NORTH','EAST','SOUTH','WEST'];
     }
 
+    isValidDirection(direction){
+        return this.validDirections.indexOf(direction) > -1;
+    }
+
     getNextLeftDirection(currentDirection) {
         let currentIndex = this.validDirections.indexOf(currentDirection);
         let leftIndex = currentIndex - 1;
