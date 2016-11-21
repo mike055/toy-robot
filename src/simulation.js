@@ -25,12 +25,5 @@ export class Simulation{
         }
 
         this.currentRobotState = command.execute(this.currentRobotState);
-
-        //parse the command
-            //class to do this?
-        //run the command
-        //validate?
-            //set current state
-            //log and ignore
     }
 }
