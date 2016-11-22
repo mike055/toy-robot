@@ -6,9 +6,7 @@ import '../tests/pollyfills.js'
 
 describe('Simulation', () => {
 
-    var mockTable = {
-
-    }
+    var mockTable = {}
 
     var mockCommandProvider = {
         for: function(rawCommand) { }
@@ -17,6 +15,11 @@ describe('Simulation', () => {
     var mockCommand = {
         execute: function(currentRobot){}
     }
+
+    var simulation;
+    beforeEach(function() {
+        simulation = new Simulation(mockTable, mockCommandProvider);
+    });
 
     describe('when move is called', () => {
 
@@ -29,7 +32,6 @@ describe('Simulation', () => {
 
             spyOn(mockCommandProvider, 'for').and.returnValue(undefined);
 
-            let simulation = new Simulation(mockTable, mockCommandProvider);
             simulation.currentRobotState = currentRobot;
             
             simulation.move('a command');
@@ -54,7 +56,6 @@ describe('Simulation', () => {
             spyOn(mockCommand, 'execute').and.returnValue(newRobotState);
             spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
 
-            let simulation = new Simulation(mockTable, mockCommandProvider);
             simulation.currentRobotState = currentRobot;
 
             simulation.move(rawCommand);

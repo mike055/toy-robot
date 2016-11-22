@@ -9,6 +9,11 @@ describe('ReportCommand', () => {
             report: function(message){}
         }
 
+        var reportCommand;
+        beforeEach(function() {
+            reportCommand = new ReportCommand(mockReporter);
+        });
+
         it('it logs current robot location', function(){
             const robot = {
                 X: 0,
@@ -18,7 +23,6 @@ describe('ReportCommand', () => {
             
             spyOn(mockReporter, 'report').and.callThrough();
             
-            let reportCommand = new ReportCommand(mockReporter);
             let result = reportCommand.execute(robot);
 
             expect(mockReporter.report).toHaveBeenCalledWith(`${robot.X},${robot.Y},${robot.F}`);
@@ -31,7 +35,6 @@ describe('ReportCommand', () => {
                 F: 'NORTH'
             };
             
-            let reportCommand = new ReportCommand(mockReporter);
             let result = reportCommand.execute(robot);
 
             expect(result).toBe(robot);

@@ -9,6 +9,11 @@ describe('MoveCommand', () => {
             isRobotOnTable: function(robot){}
         }
 
+        var moveCommand;
+        beforeEach(function() {
+            moveCommand = new MoveCommand(mockTable);
+        });
+
         it('it returns null when current robot is not on board', function(){
             const robot = {
                 X: 0,
@@ -18,7 +23,6 @@ describe('MoveCommand', () => {
             
             spyOn(mockTable, 'isRobotOnTable').and.returnValue(false);
 
-            let moveCommand = new MoveCommand(mockTable);
             let result = moveCommand.execute(robot);
 
             expect(result).toBe(null);
@@ -34,7 +38,6 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);
@@ -54,7 +57,6 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);
@@ -74,7 +76,6 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);
@@ -94,7 +95,6 @@ describe('MoveCommand', () => {
                 
                 spyOn(mockTable, 'isRobotOnTable').and.returnValue(true);
 
-                let moveCommand = new MoveCommand(mockTable);
                 let result = moveCommand.execute(robot);
 
                 expect(result).not.toBe(robot);
