@@ -3,16 +3,17 @@
 ## Usage
 * `npm install`
 * Run application: `npm start`
+    * command line application ready to take commands
 * Tests: `npm run tests`
 
 ## Notes 
 * Built and tested with node v6.9.1
 * Built with Single Responsibility Principle in mind. 
     * Simulation responsible for executing the command, 
-    * Table is responsible for knowing its size and if robot would be valid on table
+    * Table is responsible if robot would be valid on table based on the table size
     * CommandProvider is responsible for creating a command object based on the raw command. Use of Provider pattern (similar to Factory, seems to be a MS patter!)
     * Commands are responsible for executing the command and returning a new robot (robot is immutable) in the correct position (or null if now in an invalid position). Use of command pattern.
-    * Direction is responsible for knowing what orientation is the next left or right direction.
+    * Direction is responsible for knowing what orientation next (either left or right)
 * Each class has an accompanying `spec` file. These are unit tests with all dependencies mocked.
 * `scenarioTests.spec.js` are a set of integration tests to test the provided scenarios plus some extras.
 
