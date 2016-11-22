@@ -1,5 +1,5 @@
 export class Direction {
-    constructor(logger){
+    constructor(){
         this.validDirections = ['NORTH','EAST','SOUTH','WEST'];
     }
 

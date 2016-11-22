@@ -1,10 +1,12 @@
+import {Reporter} from '../reporter';
+
 export class ReportCommand{
-    constructor(logger){
-        this.logger = logger;
+    constructor(reporter){
+        this.reporter = reporter;
     }
 
     execute(robot) {
-        this.logger.log(`${robot.X},${robot.Y},${robot.F}`);
+        this.reporter.report(`${robot.X},${robot.Y},${robot.F}`);
         return robot;
     }
 }

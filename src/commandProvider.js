@@ -5,10 +5,11 @@ import {ReportCommand} from './commands/reportCommand';
 import {RightCommand} from './commands/rightCommand';
 import {Table} from './table';
 import {Direction} from './direction';
+import {Reporter} from './reporter';
 
 export class CommandProvider {
-    constructor(logger, table, direction){
-        this.logger = logger;
+    constructor(reporter, table, direction){
+        this.reporter = reporter;
         this.table = table;
         this.direction = direction;
     }
@@ -31,7 +32,7 @@ export class CommandProvider {
             return new MoveCommand(this.table);
         }
         if(rawCommand === 'REPORT') {
-            return new ReportCommand(this.logger);
+            return new ReportCommand(this.reporter);
         }
         if(rawCommand.startsWith('PLACE')) {
             var args = rawCommand.replace('PLACE', '').trim().split(',');

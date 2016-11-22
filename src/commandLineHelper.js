@@ -11,12 +11,17 @@ export class CommandLineHelper{
     }
 
     listenForInput() {
+        const prompt = 'Waiting for input';
+
+        console.log(prompt);
+
         this.rl.on('line', (input) => {
             if(input === 'QUIT') {
                 this.rl.close();
             }
             else {
                 this.simulation.move(input);
+                console.log(prompt);
             }
         });
     }
