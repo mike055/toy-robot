@@ -11,7 +11,7 @@ export class CommandLineHelper{
     }
 
     listenForInput() {
-        const prompt = 'Waiting for input';
+        const prompt = 'Waiting for input...';
 
         console.log(prompt);
 

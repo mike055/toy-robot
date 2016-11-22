@@ -9,11 +9,13 @@
 ## Notes 
 * Built and tested with node v6.9.1
 * Built with Single Responsibility Principle in mind. 
-    * Simulation responsible for executing the command, 
+    * Simulation is the orchestrator. Takes in a raw command and executes it if ready to, keeps track of current robot state
+    * CommandProvider is responsible for creating a command object based on the raw command. Use of Provider pattern (similar to Factory but has some logic to choose correct command, seems to be a MS patter!)
+    * Commands are responsible for executing the command and returning a new robot (never mutate the current robot) in the correct position (or null if now in an invalid position). Use of command pattern.
     * Table is responsible if robot would be valid on table based on the table size
-    * CommandProvider is responsible for creating a command object based on the raw command. Use of Provider pattern (similar to Factory, seems to be a MS patter!)
-    * Commands are responsible for executing the command and returning a new robot (robot is immutable) in the correct position (or null if now in an invalid position). Use of command pattern.
     * Direction is responsible for knowing what orientation next (either left or right)
+* `index.Js` is the entry point for command line application. All dependencies are created here. `commandLineHelper.js` used to listen for command line input and passed it to the simulator.
+* No logging was done for invalid commands, was not a requirement of the problem.
 * Each class has an accompanying `spec` file. These are unit tests with all dependencies mocked.
 * `scenarioTests.spec.js` are a set of integration tests to test the provided scenarios plus some extras.
 

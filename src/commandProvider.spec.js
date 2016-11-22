@@ -22,56 +22,56 @@ describe('CommandProvider', () => {
     });
 
     it('creates left command when raw command is LEFT', function(){
-        let result = commandParser.for('LEFT');
+        let result = commandParser.getCommandFor('LEFT');
 
         expect(result instanceof LeftCommand).toBe(true);
     });
 
     it('creates right command when raw command is RIGHT', function(){
-        let result = commandParser.for('RIGHT');
+        let result = commandParser.getCommandFor('RIGHT');
 
         expect(result instanceof RightCommand).toBe(true);
     });
 
     it('creates move command when raw command is MOVE', function(){
-        let result = commandParser.for('MOVE');
+        let result = commandParser.getCommandFor('MOVE');
 
         expect(result instanceof MoveCommand).toBe(true);
     });
 
     it('creates report command when raw command starts with REPORT', function(){
-        let result = commandParser.for('REPORT');
+        let result = commandParser.getCommandFor('REPORT');
 
         expect(result instanceof ReportCommand).toBe(true);
     });
     
     it('creates place command when raw command starts with PLACE', function(){
-        let result = commandParser.for('PLACE');
+        let result = commandParser.getCommandFor('PLACE');
 
         expect(result instanceof PlaceCommand).toBe(true);
     });
 
     it('creates place command with args when raw command is PLACE 1,2,NORTH', function(){
-        let result = commandParser.for('PLACE 1,2,NORTH');
+        let result = commandParser.getCommandFor('PLACE 1,2,NORTH');
 
         expect(result instanceof PlaceCommand).toBe(true);
         expect(result.commandArgs.join(',')).toBe(['1','2','NORTH'].join(','));
     });
 
     it('returns undefined when null command', function(){
-        let result = commandParser.for(null);
+        let result = commandParser.getCommandFor(null);
 
         expect(result).toBe(undefined);
     });
 
     it('returns undefined when empty command', function(){
-        let result = commandParser.for('');
+        let result = commandParser.getCommandFor('');
 
         expect(result).toBe(undefined);
     });
 
     it('returns undefined when invalid command', function(){
-        let result = commandParser.for('asdasdsad');
+        let result = commandParser.getCommandFor('asdasdsad');
 
         expect(result).toBe(undefined);
     });

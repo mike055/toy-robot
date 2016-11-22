@@ -15,7 +15,7 @@ describe('Scenarios', () => {
     beforeEach(function() {
         let table = new Table();
         let direction = new Direction();
-        simulation = new Simulation(table, new CommandProvider(mockReporter, table, direction));
+        simulation = new Simulation(new CommandProvider(mockReporter, table, direction));
     });
 
     describe('Provided scenarios', () => {
@@ -109,22 +109,27 @@ describe('Scenarios', () => {
             simulation.move('PLACE 0,0,NORTH');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,NORTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('LEFT');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,WEST');
+            mockReporter.report.calls.reset();
 
             simulation.move('LEFT');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,SOUTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('LEFT');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,EAST');
+            mockReporter.report.calls.reset();
 
             simulation.move('LEFT');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,NORTH');
+
         }); 
 
         it('moves around to the right', function(){
@@ -133,18 +138,22 @@ describe('Scenarios', () => {
             simulation.move('PLACE 0,0,NORTH');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,NORTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('RIGHT');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,EAST');
+            mockReporter.report.calls.reset();
 
             simulation.move('RIGHT');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,SOUTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('RIGHT');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,WEST');
+            mockReporter.report.calls.reset();
 
             simulation.move('RIGHT');
             simulation.move('REPORT');
@@ -157,22 +166,27 @@ describe('Scenarios', () => {
             simulation.move('PLACE 0,0,NORTH');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,NORTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,1,NORTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,2,NORTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,3,NORTH');
+            mockReporter.report.calls.reset();
             
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,4,NORTH');
+            mockReporter.report.calls.reset();
 
             //cant move any further...check still in same spot
             simulation.move('MOVE');
@@ -186,22 +200,27 @@ describe('Scenarios', () => {
             simulation.move('PLACE 0,4,SOUTH');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,4,SOUTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,3,SOUTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,2,SOUTH');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,1,SOUTH');
+            mockReporter.report.calls.reset();
             
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,SOUTH');
+            mockReporter.report.calls.reset();
 
             //cant move any further...check still in same spot
             simulation.move('MOVE');
@@ -215,22 +234,27 @@ describe('Scenarios', () => {
             simulation.move('PLACE 4,0,WEST');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('4,0,WEST');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('3,0,WEST');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('2,0,WEST');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('1,0,WEST');
+            mockReporter.report.calls.reset();
             
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,WEST');
+            mockReporter.report.calls.reset();
 
             //cant move any further...check still in same spot
             simulation.move('MOVE');
@@ -244,22 +268,27 @@ describe('Scenarios', () => {
             simulation.move('PLACE 0,0,EAST');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('0,0,EAST');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('1,0,EAST');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('2,0,EAST');
+            mockReporter.report.calls.reset();
 
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('3,0,EAST');
+            mockReporter.report.calls.reset();
             
             simulation.move('MOVE');
             simulation.move('REPORT');
             expect(mockReporter.report).toHaveBeenCalledWith('4,0,EAST');
+            mockReporter.report.calls.reset();
 
             //cant move any further...check still in same spot
             simulation.move('MOVE');

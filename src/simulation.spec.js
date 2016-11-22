@@ -6,10 +6,8 @@ import '../tests/polyfills.js'
 
 describe('Simulation', () => {
 
-    var mockTable = {}
-
     var mockCommandProvider = {
-        for: function(rawCommand) { }
+        getCommandFor: function(rawCommand) { }
     }
 
     var mockCommand = {
@@ -19,7 +17,7 @@ describe('Simulation', () => {
 
     var simulation;
     beforeEach(function() {
-        simulation = new Simulation(mockTable, mockCommandProvider);
+        simulation = new Simulation(mockCommandProvider);
     });
 
     describe('when move is called', () => {
@@ -31,7 +29,7 @@ describe('Simulation', () => {
                 F: 'NORTH'
             };
 
-            spyOn(mockCommandProvider, 'for').and.returnValue(undefined);
+            spyOn(mockCommandProvider, 'getCommandFor').and.returnValue(undefined);
 
             simulation.currentRobotState = currentRobot;
             
@@ -57,13 +55,13 @@ describe('Simulation', () => {
 
                 spyOn(mockCommand, 'execute').and.returnValue(newRobotState);
                 spyOn(mockCommand.constructor, 'name').and.returnValue('MoveCommand');
-                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+                spyOn(mockCommandProvider, 'getCommandFor').and.returnValue(mockCommand);
 
                 simulation.currentRobotState = currentRobot;
 
                 simulation.move(rawCommand);
 
-                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommandProvider.getCommandFor).toHaveBeenCalledWith(rawCommand);
                 expect(mockCommand.execute).toHaveBeenCalledWith(currentRobot);
                 expect(simulation.currentRobotState).toBe(newRobotState);
             })
@@ -79,11 +77,11 @@ describe('Simulation', () => {
 
                 mockCommand.constructor.name = 'PlaceCommand';
                 spyOn(mockCommand, 'execute').and.returnValue(newRobotState);
-                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+                spyOn(mockCommandProvider, 'getCommandFor').and.returnValue(mockCommand);
 
                 simulation.move(rawCommand);
 
-                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommandProvider.getCommandFor).toHaveBeenCalledWith(rawCommand);
                 expect(mockCommand.execute).toHaveBeenCalledWith(undefined);
                 expect(simulation.currentRobotState).toBe(newRobotState);
             });
@@ -93,11 +91,11 @@ describe('Simulation', () => {
 
                 mockCommand.constructor.name = 'MoveCommand';
                 spyOn(mockCommand, 'execute');
-                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+                spyOn(mockCommandProvider, 'getCommandFor').and.returnValue(mockCommand);
 
                 simulation.move(rawCommand);
 
-                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommandProvider.getCommandFor).toHaveBeenCalledWith(rawCommand);
                 expect(mockCommand.execute).not.toHaveBeenCalled();
                 expect(simulation.currentRobotState).toBe(undefined);
             });
@@ -107,11 +105,11 @@ describe('Simulation', () => {
 
                 mockCommand.constructor.name = 'LeftCommand';
                 spyOn(mockCommand, 'execute');
-                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+                spyOn(mockCommandProvider, 'getCommandFor').and.returnValue(mockCommand);
 
                 simulation.move(rawCommand);
 
-                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommandProvider.getCommandFor).toHaveBeenCalledWith(rawCommand);
                 expect(mockCommand.execute).not.toHaveBeenCalled();
                 expect(simulation.currentRobotState).toBe(undefined);
             });
@@ -121,11 +119,11 @@ describe('Simulation', () => {
 
                 mockCommand.constructor.name = 'RightCommand';
                 spyOn(mockCommand, 'execute');
-                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+                spyOn(mockCommandProvider, 'getCommandFor').and.returnValue(mockCommand);
 
                 simulation.move(rawCommand);
 
-                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommandProvider.getCommandFor).toHaveBeenCalledWith(rawCommand);
                 expect(mockCommand.execute).not.toHaveBeenCalled();
                 expect(simulation.currentRobotState).toBe(undefined);
             });
@@ -135,11 +133,11 @@ describe('Simulation', () => {
 
                 mockCommand.constructor.name = 'ReportCommand';
                 spyOn(mockCommand, 'execute');
-                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+                spyOn(mockCommandProvider, 'getCommandFor').and.returnValue(mockCommand);
 
                 simulation.move(rawCommand);
 
-                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommandProvider.getCommandFor).toHaveBeenCalledWith(rawCommand);
                 expect(mockCommand.execute).not.toHaveBeenCalled();
                 expect(simulation.currentRobotState).toBe(undefined);
             });

@@ -10,7 +10,7 @@ export class MoveCommand{
             return newRobot;
         }
 
-        return null;
+        return currentRobot;
     }
 
     _makeMove(currentRobot){

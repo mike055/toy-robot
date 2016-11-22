@@ -2,8 +2,7 @@ import {Table} from './table';
 import {CommandProvider} from './commandProvider';
 
 export class Simulation{
-    constructor(table, commandProvider){
-        this.table = table;
+    constructor(commandProvider){
         this.commandProvider = commandProvider;
 
         this.currentRobotState = undefined;
@@ -11,7 +10,7 @@ export class Simulation{
 
     move(rawCommand) {
         const placeCommandName = 'PlaceCommand';
-        let command = this.commandProvider.for(rawCommand);
+        let command = this.commandProvider.getCommandFor(rawCommand);
 
         if(!command) {
             return;

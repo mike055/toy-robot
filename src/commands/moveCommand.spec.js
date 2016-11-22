@@ -14,8 +14,8 @@ describe('MoveCommand', () => {
             moveCommand = new MoveCommand(mockTable);
         });
 
-        it('it returns null when current robot is not on board', function(){
-            const robot = {
+        it('it returns current robot when current robot is not on board', function(){
+            const currentRobot = {
                 X: 0,
                 Y: 0,
                 F: 'SOUTH'
@@ -23,9 +23,9 @@ describe('MoveCommand', () => {
             
             spyOn(mockTable, 'isRobotOnTable').and.returnValue(false);
 
-            let result = moveCommand.execute(robot);
+            let result = moveCommand.execute(currentRobot);
 
-            expect(result).toBe(null);
+            expect(result).toBe(currentRobot);
         });
 
         describe('when facing SOUTH', () => {

@@ -14,7 +14,7 @@ export class CommandProvider {
         this.direction = direction;
     }
 
-    for(rawCommand) {
+    getCommandFor(rawCommand) {
 
         if(!rawCommand) {
             return undefined;

@@ -9,8 +9,7 @@ import {CommandLineHelper} from './commandLineHelper';
 let table = new Table();
 let direction = new Direction();
 let reporter = new Reporter();
-let simulation = new Simulation(table, new CommandProvider(reporter, table, direction));
-let commandLineHelper = new CommandLineHelper(simulation);
+let simulation = new Simulation(new CommandProvider(reporter, table, direction));
 
-//todo: would prefer to pass simulation.move in as a call back instead of the instance being passed.
+let commandLineHelper = new CommandLineHelper(simulation);
 commandLineHelper.listenForInput();
