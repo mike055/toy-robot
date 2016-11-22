@@ -5,7 +5,7 @@ import {PlaceCommand} from './commands/placeCommand';
 import {ReportCommand} from './commands/reportCommand';
 import {RightCommand} from './commands/rightCommand';
 
-import '../tests/pollyfills.js'
+import '../tests/polyfills.js'
 
 describe('CommandProvider', () => {
 

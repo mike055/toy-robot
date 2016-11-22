@@ -1,5 +1,5 @@
 import {ReportCommand} from './reportCommand';
-import '../../tests/pollyfills.js'
+import '../../tests/polyfills.js'
 
 describe('ReportCommand', () => {
 

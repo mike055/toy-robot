@@ -1,5 +1,5 @@
 import {RightCommand} from './rightCommand';
-import '../../tests/pollyfills.js'
+import '../../tests/polyfills.js'
 
 describe('RightCommand', () => {
 

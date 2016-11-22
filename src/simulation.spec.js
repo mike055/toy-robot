@@ -2,7 +2,7 @@ import {Simulation} from './simulation';
 import {Table} from './table';
 import {CommandProvider} from './commandProvider';
 
-import '../tests/pollyfills.js'
+import '../tests/polyfills.js'
 
 describe('Simulation', () => {
 
@@ -13,7 +13,8 @@ describe('Simulation', () => {
     }
 
     var mockCommand = {
-        execute: function(currentRobot){}
+        execute: function(currentRobot){},
+        constructor: { name : null }
     }
 
     var simulation;
@@ -23,7 +24,7 @@ describe('Simulation', () => {
 
     describe('when move is called', () => {
 
-        it('returns and robot state unchanged', function(){
+        it('returns and robot state unchanged when undefined command', function(){
             const currentRobot = {
                 X: 0,
                 Y: 0,
@@ -39,31 +40,110 @@ describe('Simulation', () => {
             expect(simulation.currentRobotState).toBe(currentRobot);
         })
 
-        it('set new robot state when command executed', function(){
-            const currentRobot = {
-                X: 0,
-                Y: 0,
-                F: 'NORTH'
-            };
-            const newRobotState = {
-                X: 4,
-                Y: 4,
-                F: 'SOUTH'
-            }
+        describe('when robot is placed', () => {
+            it('sets new robot state when command executed', function(){
+                const currentRobot = {
+                    X: 0,
+                    Y: 0,
+                    F: 'NORTH'
+                };
+                const newRobotState = {
+                    X: 0,
+                    Y: 1,
+                    F: 'NORTH'
+                }
 
-            const rawCommand = 'PLACE 4,4,SOUTH';
+                const rawCommand = 'MOVE';
 
-            spyOn(mockCommand, 'execute').and.returnValue(newRobotState);
-            spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+                spyOn(mockCommand, 'execute').and.returnValue(newRobotState);
+                spyOn(mockCommand.constructor, 'name').and.returnValue('MoveCommand');
+                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
 
-            simulation.currentRobotState = currentRobot;
+                simulation.currentRobotState = currentRobot;
 
-            simulation.move(rawCommand);
+                simulation.move(rawCommand);
 
-            expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
-            expect(mockCommand.execute).toHaveBeenCalledWith(currentRobot);
-            expect(simulation.currentRobotState).toBe(newRobotState);
-        })
+                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommand.execute).toHaveBeenCalledWith(currentRobot);
+                expect(simulation.currentRobotState).toBe(newRobotState);
+            })
+        });
+        describe('when robot is not placed', () => {
+            it('sets new robot state when place command executed', function(){
+                const newRobotState = {
+                    X: 4,
+                    Y: 4,
+                    F: 'South'
+                }
+                const rawCommand = 'PLACE 4,4,SOUTH';
+
+                mockCommand.constructor.name = 'PlaceCommand';
+                spyOn(mockCommand, 'execute').and.returnValue(newRobotState);
+                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+
+                simulation.move(rawCommand);
+
+                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommand.execute).toHaveBeenCalledWith(undefined);
+                expect(simulation.currentRobotState).toBe(newRobotState);
+            });
+
+            it('ignores the command when move command', function(){
+                const rawCommand = 'MOVE';
+
+                mockCommand.constructor.name = 'MoveCommand';
+                spyOn(mockCommand, 'execute');
+                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+
+                simulation.move(rawCommand);
+
+                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommand.execute).not.toHaveBeenCalled();
+                expect(simulation.currentRobotState).toBe(undefined);
+            });
+
+            it('ignores the command when left command', function(){
+                const rawCommand = 'LEFT';
+
+                mockCommand.constructor.name = 'LeftCommand';
+                spyOn(mockCommand, 'execute');
+                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+
+                simulation.move(rawCommand);
+
+                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommand.execute).not.toHaveBeenCalled();
+                expect(simulation.currentRobotState).toBe(undefined);
+            });
+
+            it('ignores the command when right command', function(){
+                const rawCommand = 'RIGHT';
+
+                mockCommand.constructor.name = 'RightCommand';
+                spyOn(mockCommand, 'execute');
+                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+
+                simulation.move(rawCommand);
+
+                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommand.execute).not.toHaveBeenCalled();
+                expect(simulation.currentRobotState).toBe(undefined);
+            });
+
+            it('ignores the command when report command', function(){
+                const rawCommand = 'REPORT';
+
+                mockCommand.constructor.name = 'ReportCommand';
+                spyOn(mockCommand, 'execute');
+                spyOn(mockCommandProvider, 'for').and.returnValue(mockCommand);
+
+                simulation.move(rawCommand);
+
+                expect(mockCommandProvider.for).toHaveBeenCalledWith(rawCommand);
+                expect(mockCommand.execute).not.toHaveBeenCalled();
+                expect(simulation.currentRobotState).toBe(undefined);
+            });
+        });
 
     });
 });

@@ -1,5 +1,5 @@
 import {MoveCommand} from './moveCommand';
-import '../../tests/pollyfills.js'
+import '../../tests/polyfills.js'
 
 describe('MoveCommand', () => {
 

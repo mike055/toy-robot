@@ -1,5 +1,5 @@
 import {Direction} from './direction';
-import '../tests/pollyfills.js'
+import '../tests/polyfills.js'
 
 describe('Direction', () => {
 

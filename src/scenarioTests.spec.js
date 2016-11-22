@@ -7,7 +7,7 @@ let table = new Table(console);
 let direction = new Direction(console);
 let simulation = new Simulation(console, table, new CommandProvider(console, table, direction));
 
-import '../tests/pollyfills.js'
+import '../tests/polyfills.js'
 
 xdescribe('Scenarios', () => {
 

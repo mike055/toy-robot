@@ -1,5 +1,5 @@
 import {PlaceCommand} from './placeCommand';
-import '../../tests/pollyfills.js'
+import '../../tests/polyfills.js'
 
 describe('PlaceCommand', () => {
 

@@ -1,5 +1,5 @@
 import {Table} from './table';
-import '../tests/pollyfills.js'
+import '../tests/polyfills.js'
 
 describe('Table', () => {
 
